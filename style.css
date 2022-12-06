@@ -37,8 +37,8 @@ html {
   }
   
   .card:hover {
-    background-color: salmon;
-    border-color: red;
+    background-color: skyblue;
+    border-color: blue;
   }
   
   .card.spades,
