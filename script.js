@@ -55,6 +55,7 @@ function displayCard(cards, location){
   location.appendChild(card);
 }
 
+// Needs to have style name content brought over from original card
 function handlesClickedCard(e){
   if(e.target.id){
     const info = e.target.id.split(" ")
