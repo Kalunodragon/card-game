@@ -5,6 +5,7 @@ const cards = deckConstruction()
 const deckLocation = document.getElementById('card-collection')
 const handLocation = document.getElementById('hand-collection')
 const handTwoLocation = document.getElementById('hand-two-collection')
+const discardLocation = document.getElementById('discard-collection')
 
 const shuffleFaceUp = document.getElementById('shuffle-face-up')
 shuffleFaceUp.addEventListener('click', () => randomDeckShuffle())
@@ -27,7 +28,7 @@ function deckConstruction() {
 }
 
 // Test function to display randomly shuffled deck
-function displayFullDeck(cards, location){
+function displayCard(cards, location){
   const cardValue = cards.value;
   const cardSuit = cards.suit;
 
@@ -49,21 +50,35 @@ function displayFullDeck(cards, location){
   '<span class="card-suit">' + entity + "</span>" +
   '<span class="card-value-suit bot">' + cardValue + entity + "</span>";
 
-  card.addEventListener('click', (e) => {
-    if(e.target.id){
-      const info = e.target.id.split(" ")
-
-      const infoObj = {
-        value: info[0],
-        suit: info[1]
-      }
-      console.log(infoObj)
-    } else {
-      console.log(e.target.parentNode.id.split(" "))
-    }
-  })
+  card.addEventListener('click', (e) => handlesClickedCard(e))
 
   location.appendChild(card);
+}
+
+function handlesClickedCard(e){
+  if(e.target.id){
+    const info = e.target.id.split(" ")
+
+    const infoObj = {
+      value: info[0],
+      suit: info[1]
+    }
+    discardTest(infoObj)
+    console.log(infoObj)
+  } else {
+    const info = e.target.parentNode.id.split(" ")
+
+    const infoObj = {
+      value: info[0],
+      suit: info[1]
+    }
+    discardTest(infoObj)
+    console.log(infoObj)
+  }
+}
+
+function discardTest(cardInfo){
+  displayCard(cardInfo, discardLocation)
 }
 
 // Random deck shuffle => creates random array of cards
@@ -72,7 +87,7 @@ function randomDeckShuffle(){
     document.querySelectorAll('div').forEach(div => div.remove())
   }
   const deck = cards.sort(() => (Math.random() > .5 ? 1 : -1))
-  deck.forEach(cardInDeck => displayFullDeck(cardInDeck, deckLocation))
+  deck.forEach(cardInDeck => displayCard(cardInDeck, deckLocation))
 }
 
 function dealHand(){
@@ -85,9 +100,9 @@ function dealHand(){
   const handTwo = deck.slice(5,10)
   const newDeck = deck.slice(10, )
 
-  hand.forEach(card => displayFullDeck(card, handLocation))
-  handTwo.forEach(card => displayFullDeck(card, handTwoLocation))
-  newDeck.forEach(deckCard => displayFullDeck(deckCard, deckLocation))
+  hand.forEach(card => displayCard(card, handLocation))
+  handTwo.forEach(card => displayCard(card, handTwoLocation))
+  newDeck.forEach(deckCard => displayCard(deckCard, deckLocation))
 
 }
 
