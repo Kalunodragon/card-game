@@ -1,0 +1,99 @@
+THIS FILE IS MAINLY FOR MY PERSONAL USE
+HOWEVER IF PEOPLE WERE CURIOUS AS TO FUNCTIONS
+I AM GOING TO BE ADDING LOOK BELOW FOR A BROAD
+OVERVIEW THIS FILE CAN BE SKIPPED, OBMITTED,
+OR MODIFIED WITH NO CHANGE TO CURRENT WORKING
+FUNCTIONALITY. THIS IS BEING KEPT IN WITH THE
+FILES MAINLY AS A PORTFOLIO TYPE PEICE.
+
+Simple playing card game
+    gameplay similar to WAR, however in this version
+    players will get to select one of 5 cards from
+    their hand to play in the battle area.
+        up to 4 players allowed
+        ties on 3+ players only battle between the tied players
+            if player cannot play 3 face down cards in a war
+            player must play x ammount of cards face down that they
+            can, with the last card being face up as their next played
+            card. Players get to choose their face down cards.
+    players are eleminated once they no longer have any more cards
+    player who gains all 52 cards is the winner
+    if all players lose vs computers game ends instantly with just
+    try again type screen
+
+-----function thoughts
+
+Deck building function
+    deck is built in order
+        uses suit
+        face value
+        empty player key
+            that updates with controling players number
+                example ( player: player 1)
+        ??? possible index number
+        ??? possible strength for comparisons
+    { 
+        value: 'A',
+        suit: 'Hearts',
+        player: player 1,
+        strength: 12
+    }
+
+Random deck function
+    reoders deck into a new array of cards
+
+Draw a card funciton
+    Allows current player to draw a single card
+        might be used for dealing out initial cards (5 per player hand)
+
+Ammount of players
+    gives someone the ability to select how many people are playing
+
+Computer AI for one player
+    allows someone to play a game against a computer
+        mostly random, uses smarter AI during war events
+
+Discard pile(s)
+    creates an area where discard cards can be
+        multiple individual piles dependant on number of players
+        cards sent here get reshuffled back into new deck for player
+            once main deck runs out each player has their own deck
+
+Card comparison funciton
+    allows cards to be checked against one another
+        match - causes need for another card to be played
+            or - 3 cards face down, then another card
+        high,low - discards all played cards into round winners discard
+
+Random player start
+    randomly selects one player to start the game
+
+Number of player selection
+    allows player to choose how many players
+    Also allows players to choose how many are players vs computers
+        must have at least one player
+
+Turn by turn type tracker
+    keeps track of whos turn it is and who can or cant play cards
+
+Privacy type next player screen
+    if more than one player
+        have the game display a screen that says pass to x player
+    if turn is over an only computers are next, comp turns are quickly taken
+
+-----Style type thoughts
+
+Cards face side
+    shows simple suit and value
+        stretch - shows image for J,Q,K and larger suit center if A
+
+Cards back side
+    shows simple image of card back
+
+Table
+    updated depending on number of players
+    shows discard area for each player
+    shows number of cards for each player
+    shows how many cards are in opponents hands
+    shows center deck until it runs out
+    shows new draw piles for each player
