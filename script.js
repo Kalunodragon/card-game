@@ -14,48 +14,43 @@ const dealFiveCardButton = document.getElementById('deal-out-hand')
 dealFiveCardButton.addEventListener('click', () => dealHand())
 
 function deckConstruction() {
-  const values = ["A","2","3","4","5","6","7","8","9","10","J","Q","K"];
-  const suits = ["Hearts", "Diamonds", "Spades", "Clubs"];
-  const cards = [];
+  const values = ["A","2","3","4","5","6","7","8","9","10","J","Q","K"]
+  const suits = ["Hearts", "Diamonds", "Spades", "Clubs"]
+  const cards = []
   for (let s = 0; s < suits.length; s++) {
     for (let v = 0; v < values.length; v++) {
-      const value = values[v];
-      const suit = suits[s];
-      cards.push({ value, suit });
+      const value = values[v]
+      const suit = suits[s]
+      cards.push({ value, suit })
     } 
   }
-  return cards;
+  return cards
 }
 
 // Test function to display randomly shuffled deck
 function displayCard(cards, location){
-  const cardValue = cards.value;
-  const cardSuit = cards.suit;
+  const cardValue = cards.value
+  const cardSuit = cards.suit
 
-  let entity;
-  if(cards.suit.charAt(0) !== "&"){
-    cardSuit === "Diamonds"
-      ? (entity = "&diams;")
-      : (entity = "&" + cardSuit.toLowerCase() + ";");
-  } else {
-    entity = cards.suit
-  }
+  let entity
+  cardSuit === "Diamonds"
+    ? (entity = "&diams;")
+    : (entity = "&" + cardSuit.toLowerCase() + ";")
 
   const card = document.createElement("div");
-  card.classList.add("card", cardSuit.toLowerCase());
-  card.id = cardValue + " " + entity
+  card.classList.add("card", cardSuit.toLowerCase())
+  card.id = cardValue + " " + cardSuit
 
   card.innerHTML = 
   '<span class="card-value-suit top">' + cardValue + entity +"</span>" +
   '<span class="card-suit">' + entity + "</span>" +
-  '<span class="card-value-suit bot">' + cardValue + entity + "</span>";
+  '<span class="card-value-suit bot">' + cardValue + entity + "</span>"
 
   card.addEventListener('click', (e) => handlesClickedCard(e))
 
   location.appendChild(card);
 }
 
-// Needs to have style name content brought over from original card
 function handlesClickedCard(e){
   if(e.target.id){
     const info = e.target.id.split(" ")
@@ -65,6 +60,7 @@ function handlesClickedCard(e){
       suit: info[1]
     }
     discardTest(infoObj)
+    document.getElementById(e.target.id).remove()
     console.log(infoObj)
   } else {
     const info = e.target.parentNode.id.split(" ")
@@ -74,10 +70,12 @@ function handlesClickedCard(e){
       suit: info[1]
     }
     discardTest(infoObj)
+    document.getElementById(e.target.parentNode.id).remove()
     console.log(infoObj)
   }
 }
 
+// using this function to test the handleing clicking card function
 function discardTest(cardInfo){
   displayCard(cardInfo, discardLocation)
 }
