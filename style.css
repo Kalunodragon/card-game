@@ -19,7 +19,8 @@ html {
   #hand-collection,
   #hand-two-collection,
   #card-collection,
-  #discard-collection {
+  #discard-collection,
+  #play-collection {
     margin: 20px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
